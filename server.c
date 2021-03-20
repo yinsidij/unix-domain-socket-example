@@ -17,6 +17,7 @@ int main() {
 		perror("socket");
 		ok = 0;
 	}
+	printf("fd=%d\n",fd);
 
 	if (ok) {
 		memset(&addr, 0, sizeof(addr));
@@ -29,6 +30,7 @@ int main() {
 		}
 	}
 
+	int count=0;
 	while ((len = recvfrom(fd, buff, 8192, 0, (struct sockaddr *)&from, &fromlen)) > 0) {
 		printf ("recvfrom: %s\n", buff);
 		strcpy (buff, "transmit good!");
@@ -37,6 +39,7 @@ int main() {
 			perror("sendto");
 			break;
 		}
+		printf("count=%d\n",count++);
 	}
 	
 
